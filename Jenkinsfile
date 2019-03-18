@@ -37,8 +37,23 @@ pipeline {
         }
       }
     }
+    stage('LastStep') {
+      parallel {
+        stage('LastStep') {
+          steps {
+            echo 'LastStep'
+          }
+        }
+        stage('LastStep1') {
+          steps {
+            sh 'echo $MYVAR'
+          }
+        }
+      }
+    }
   }
   environment {
     MYVAR = '123'
+    MYVAR2 = '222'
   }
 }
